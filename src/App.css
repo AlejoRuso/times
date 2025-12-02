@@ -1,0 +1,338 @@
+/* Сброс и базовые стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary-color: #7209b7;
+  --text-primary: #1a1a2e;
+  --text-secondary: #9ba2a8;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Панель добавления */
+.header-panel {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  padding: 10px 14px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+  background: var(--bg-light);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--bg-white);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+.input-group input::placeholder {
+  color: #adb5bd;
+  font-weight: 400;
+}
+
+.timezone-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.timezone-input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.timezone-label {
+  position: absolute;
+  right: 14px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* Кнопка Добавить */
+.add-button {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  height: 42px;
+  align-self: flex-end;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.add-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #6200a8 100%);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+/* Сетка часов */
+.clocks-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+  align-content: start;
+}
+
+/* Стили для компонента Clock */
+.clock-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.clock-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.clock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.clock-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.remove-button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.remove-button:hover {
+  background: #ff5252;
+  transform: scale(1.1);
+}
+
+.time-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.digital-clock {
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+  padding: 5px 5px;
+  border-radius: 8px;
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  text-align: center;
+  min-width: 120px;
+}
+
+.analog-clock {
+  width: 100px;
+  height: 100px;
+}
+
+.clock-face {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #0f44a0;
+  border-radius: 50%;
+  position: relative;
+  background: white;
+}
+
+.hour-mark {
+  position: absolute;
+  left: 50%;
+  top: 0px; /* ← Начальная позиция сверху */
+  width: 2px;
+  height: 8px;
+  background: var(--text-primary);
+  transform-origin: 50% 50px; /* ← Центр вращения */
+}
+
+.hour-mark span {
+  position: absolute;
+  transform-origin: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  top: -25px;
+  left: -8px;
+  width: 20px;
+  text-align: center;
+}
+
+.hand {
+  position: absolute;
+  background: #333;
+  border-radius: 4px;
+  transform-origin: 50% 100%;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+}
+
+.hour-hand {
+  width: 6px;
+  height: 30px;
+  margin-top: -30px;
+  background: #2d3748;
+}
+
+.minute-hand {
+  width: 3px;
+  height: 40px;
+  margin-top: -40px;
+  background: #4a5568;
+}
+
+.second-hand {
+  width: 2px;
+  height: 50px;
+  margin-top: -50px;
+  background: #e53e3e;
+}
+
+.center-dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #0a0a0a;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.timezone-info {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* Состояние "пусто" */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
